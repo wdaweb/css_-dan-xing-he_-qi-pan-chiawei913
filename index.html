@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: '標楷體';
+    }
+    html,
+    body{
+      height: 100%;
+    }
+    body{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .out_border{
+      padding:45px;
+      border: 1px solid #000;
+    }
+    .chess{
+      position: relative;
+      width: 600px;
+      height: 684px;
+      border-spacing: 0;
+    }
+    .r1 {
+      display: flex;
+    }
+    .r1 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r1_t4::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 108px;
+      left: 262px;
+      top:-15px;
+      background: #000;
+      transform: rotate(-45deg);
+    }
+    .r1_t5::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 108px;
+      left: 337px;
+      top:-15px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+    .r2{
+      display: flex;
+    }
+    .r2 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r2_t4::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 107px;
+      left: 263px;
+      top:61px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+    .r2_t5::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 107px;
+      left: 336px;
+      top:61px;
+      background: #000;
+      transform: rotate(-45deg);
+    }
+    .r3 {
+      display: flex;
+    }
+    .r3 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r4{
+      display: flex;
+    }
+    .r4 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r5{
+      flex-direction: row;
+      display: flex;
+    }
+    .r5 div{
+      width: 600px;
+      height: 75px;
+      border: 1px solid #000;
+      justify-content: space-around;
+      display: flex;
+    }
+    .r5_p1{
+      height: 75px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 45px;
+      font-weight:bold;
+    }
+    .r5_p2{
+      height: 75px;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 45px;
+      font-weight:bold;
+    }
+    .r6{
+      display: flex;
+    }
+    .r6 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r7{
+      display: flex;
+    }
+    .r7 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r8{
+      display: flex;
+    }
+    .r8 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r8_t4::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 108px;
+      left:262px;
+      bottom:52px;
+      background: #000;
+      transform: rotate(-45deg);
+    }
+    .r8_t5::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 108px;
+      left: 337px;
+      bottom:52px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+    .r9{
+      display: flex;
+    }
+    .r9 div{
+      width: 75px;
+      height: 75px;
+      border: 1px solid #000;
+    }
+    .r9_t4::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 107px;
+      left: 263px;
+      bottom:-23px;
+      background: #000;
+      transform: rotate(45deg);
+    }
+    .r9_t5::before{
+      content: '';
+      position: absolute;
+      width: 1.5px;
+      height: 107px;
+      left: 336px;
+      bottom:-23px;
+      background: #000;
+      transform: rotate(-45deg);
+    }
+    .r9 p{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+    }
+    .r_car,.r_horse,.r_ele,.r_four,.r_lead,.r_four2,.r_ele2,.r_horse2{
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: red;
+      font-weight:bold;
+      transform: translate(-25px,50px);
+    }
+    .r_car2{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: red;
+      font-weight:bold;
+      transform: translate(50px,127px);
+    }
+    .r_gun,.r_gun2{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: red;
+      font-weight:bold;
+      transform: translate(-25px,50px);
+    }
+    .r_sold1,.r_sold2,.r_sold3,.r_sold4{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: red;
+      font-weight:bold;
+      transform: translate(-25px,50px);
+    }
+    .r_sold5{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: red;
+      font-weight:bold;
+      transform: translate(50px,50px);
+    }
+    .r1 p{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+    }
+    .b_car,.b_horse,.b_ele,.b_four,.b_lead,.b_four2,.b_ele2,.b_horse2{
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: black;
+      font-weight:bold;
+      transform: translate(-25px,-25px);
+    }
+    .b_car2{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: black;
+      font-weight:bold;
+      transform: translate(50px,-102px);
+    }
+    .b_gun,.b_gun2{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: black;
+      font-weight:bold;
+      transform: translate(-25px,-25px);
+    }
+    .b_sold1,.b_sold2,.b_sold3,.b_sold4{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: black;
+      font-weight:bold;
+      transform: translate(-25px,-25px);
+    }
+    .b_sold5{
+      border: 1px solid black;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      display: flex;
+      background: white;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+      font-size: 30px;
+      color: black;
+      font-weight:bold;
+      transform: translate(50px,-22px);
+    }
+    .f1{
+      writing-mode: vertical-lr;
+      font-size: 30px;
+      height: 774px;
+      padding-left:25px;
+      padding-right: 25px;
+    }
+  </style>
+</head>
+<body>
+  <p class="f1">棋盤裡，車無輪，馬無韁，叫聲將軍堤防堤防</p>
+  <div class="out_border">
+  <div class="chess">
+    <div class="r1">
+      <div class="r1_t1"><p class="b_car">車</p></div>
+      <div class="r1_t2"><p class="b_horse">馬</p></div>
+      <div class="r1_t3"><p class="b_ele">象</p></div>
+      <div class="r1_t4"><p class="b_four">士</p></div>
+      <div class="r1_t5"><p class="b_lead">將</p></div>
+      <div class="r1_t6"><p class="b_four2">士</p></div>
+      <div class="r1_t7"><p class="b_ele2">象</p></div>
+      <div class="r1_t8"><p class="b_horse2">馬</p></div>
+    </div>
+    <div class="r2">
+      <div class="r2_t1"></div>
+      <div class="r2_t2"></div>
+      <div class="r2_t3"></div>
+      <div class="r2_t4"></div>
+      <div class="r2_t5"></div>
+      <div class="r2_t6"></div>
+      <div class="r2_t7"></div>
+      <div class="r2_t8"><p class="b_car2">車</p></div>
+    </div>
+    <div class="r3">
+      <div class="r3_t1"></div>
+      <div class="r3_t2"><p class="b_gun">包</p></div>
+      <div class="r3_t3"></div>
+      <div class="r3_t4"></div>
+      <div class="r3_t5"></div>
+      <div class="r3_t6"></div>
+      <div class="r3_t7"></div>
+      <div class="r3_t8"><p class="b_gun2">包</p></div>
+    </div>
+    <div class="r4">
+      <div class="r4_t1"><p class="b_sold1">卒</p></div>
+      <div class="r4_t2"></div>
+      <div class="r4_t3"><p class="b_sold2">卒</p></div>
+      <div class="r4_t4"></div>
+      <div class="r4_t5"><p class="b_sold3">卒</p></div>
+      <div class="r4_t6"></div>
+      <div class="r4_t7"><p class="b_sold4">卒</p></div>
+      <div class="r4_t8"><p class="b_sold5">卒</p></div>
+    </div>
+    <div class="r5">
+      <div>
+        <p class="r5_p1">楚河</p>
+        <p class="r5_p2">漢界</p>
+      </div>
+    </div>
+    <div class="r6">
+      <div class="r6_t1"><p class="r_sold1">兵</p></div>
+      <div class="r6_t2"></div>
+      <div class="r6_t3"><p class="r_sold2">兵</p></div>
+      <div class="r6_t4"></div>
+      <div class="r6_t5"><p class="r_sold3">兵</p></div>
+      <div class="r6_t6"></div>
+      <div class="r6_t7"><p class="r_sold4">兵</p></div>
+      <div class="r6_t8"><p class="r_sold5">兵</p></div>
+    </div>
+    <div class="r7">
+      <div class="r7_t1"></div>
+      <div class="r7_t2"><p class="r_gun">炮</p></div>
+      <div class="r7_t3"></div>
+      <div class="r7_t4"></div>
+      <div class="r7_t5"></div>
+      <div class="r7_t6"></div>
+      <div class="r7_t7"></div>
+      <div class="r7_t8"><p class="r_gun2">炮</p></div>
+    </div>
+    <div class="r8">
+      <div class="r8_t1"></div>
+      <div class="r8_t2"></div>
+      <div class="r8_t3"></div>
+      <div class="r8_t4"></div>
+      <div class="r8_t5"></div>
+      <div class="r8_t6"></div>
+      <div class="r8_t7"></div>
+      <div class="r8_t8"><p class="r_car2">俥</p></div>
+    </div>
+    <div class="r9">
+      <div class="r9_t1"><p class="r_car">俥</p></div>
+      <div class="r9_t2"><p class="r_horse">傌</p></div>
+      <div class="r9_t3"><p class="r_ele">相</p></div>
+      <div class="r9_t4"><p class="r_four">仕</p></div>
+      <div class="r9_t5"><p class="r_lead">帥</p></div>
+      <div class="r9_t6"><p class="r_four2">仕</p></div>
+      <div class="r9_t7"><p class="r_ele2">相</p></div>
+      <div class="r9_t8"><p class="r_horse2">傌</p></div>
+    </div>   
+  </div>
+</div>
+<p class="f1">圖畫裡，龍不吟，虎不嘯，小小書僮可笑可笑</p>
+</body>
+</html>
